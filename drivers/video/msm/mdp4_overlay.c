@@ -3579,8 +3579,8 @@ int mdp4_overlay_set(struct fb_info *info, struct mdp_overlay *req)
 		ret = mdp4_calc_req_blt(mfd, req);
 		if (ret < 0) {
 			mutex_unlock(&mfd->dma->ov_mutex);
-			pr_err("%s: blt mode is required! ret=%d\n",
-				__func__, ret);
+			/*pr_err("%s: blt mode is required! ret=%d\n",
+				__func__, ret);*/
 			return ret;
 		}
 	}
