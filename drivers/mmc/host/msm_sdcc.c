@@ -2244,12 +2244,10 @@ msmsdcc_request(struct mmc_host *mmc, struct mmc_request *mrq)
 	     mrq->cmd->opcode, host->curr.mrq->cmd->opcode);
 
 	/*
-	 * Set timeout value to 10 secs (or more in case of buggy cards)
+	 * Set timeout value to 4mins to improve handling of bad sd cards
 	 */
-	if ((mmc->card) && (mmc->card->quirks & MMC_QUIRK_INAND_DATA_TIMEOUT))
-		host->curr.req_tout_ms = 20000;
-	else
-		host->curr.req_tout_ms = MSM_MMC_REQ_TIMEOUT;
+	host->curr.req_tout_ms = MSM_MMC_REQ_TIMEOUT;
+
 	/*
 	 * Kick the software request timeout timer here with the timeout
 	 * value identified above
